@@ -1,0 +1,23 @@
+.scoreboard-container {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  border: 2px solid #fff;
+  position: absolute;
+  left: -250px; /* Adjust as needed */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Center vertically */
+}
+
+
+.scoreboard-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.scoreboard-content {
+  font-size: 20px;
+}

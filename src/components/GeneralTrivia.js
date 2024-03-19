@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Scoreboard from './Scoreboard';
 import HtmlDecode from './HtmlDecode'; // Import the HtmlDecode component
+import './GeneralTrivia.css'; // Import the CSS file for GeneralTrivia
 
 const fetchGeneralQuestions = async () => {
   try {
@@ -48,8 +49,8 @@ const GeneralTrivia = () => {
   };
 
   return (
-    <div>
-      <h2>General Trivia</h2>
+    <div className="general-trivia-container">
+      <h2 className="general-trivia-title">General Trivia</h2>
       <Scoreboard score={score} />
       {isLoading && <div>Loading...</div>}
       {isError && <div>Error fetching data</div>}

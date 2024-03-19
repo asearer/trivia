@@ -1,0 +1,18 @@
+/* GeneralTrivia.css */
+.general-trivia-container {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  border: 2px solid #fff;
+  position: relative; /* Change to relative positioning */
+  left: 20px;
+  top: calc(100% + 20px); /* Place below the navbar */
+}
+
+.general-trivia-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
