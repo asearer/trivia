@@ -1,0 +1,56 @@
+/* ScienceTrivia.css */
+
+.science-trivia-container {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  border: 2px solid #fff;
+  position: relative; /* Change to relative positioning */
+  
+  top: calc(100% + 20px); /* Place below the navbar */
+}
+
+.science-trivia-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.science-trivia-container p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.science-trivia-options {
+  margin-bottom: 20px;
+}
+
+.science-trivia-options input[type="radio"] {
+  margin-right: 10px;
+}
+
+.science-trivia-options label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.science-trivia-btns button {
+  margin-right: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.science-trivia-btns button:hover {
+  background-color: #0056b3;
+}
+
+.scoreboard {
+  margin-top: 20px;
+}

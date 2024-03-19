@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Scoreboard from './Scoreboard';
 import HtmlDecode from './HtmlDecode'; // Import the HtmlDecode component
+import './EntertainmentTrivia.css';
 
 const fetchEntertainmentQuestions = async () => {
   const apiUrl = 'https://opentdb.com/api.php?amount=10&category=11';

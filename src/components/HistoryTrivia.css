@@ -1,0 +1,58 @@
+/* HistoryTrivia.css */
+
+.history-trivia-container {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  border: 2px solid #fff;
+  position: relative; /* Change to relative positioning */
+  
+  top: calc(100% + 20px); /* Place below the navbar */
+}
+
+.history-trivia-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.history-trivia-question {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.history-trivia-options {
+  margin-bottom: 20px;
+}
+
+.history-trivia-options label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.history-trivia-options input[type="radio"] {
+  margin-right: 10px;
+}
+
+.history-trivia-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.history-trivia-buttons button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.history-trivia-buttons button:last-child {
+  margin-right: 0;
+}

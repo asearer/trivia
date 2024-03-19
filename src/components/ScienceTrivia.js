@@ -1,7 +1,9 @@
+// ScienceTrivia.js
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Scoreboard from './Scoreboard';
-import HtmlDecode from './HtmlDecode'; // Import the HtmlDecode component
+import HtmlDecode from './HtmlDecode';
+import './ScienceTrivia.css'; // Import the CSS file for ScienceTrivia
 
 const fetchScienceQuestions = async () => {
   try {
@@ -10,7 +12,6 @@ const fetchScienceQuestions = async () => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    // Check if data.results exists before mapping over it
     if (data.results) {
       return data.results.map(question => ({
         ...question,
@@ -20,8 +21,8 @@ const fetchScienceQuestions = async () => {
       throw new Error('Data format error: results field missing');
     }
   } catch (error) {
-    console.error('Error fetching science questions:', error);
-    throw error; // Rethrow the error to be caught by the caller
+    console.error('Error fetching science trivia questions:', error);
+    throw error;
   }
 };
 
@@ -48,15 +49,15 @@ const ScienceTrivia = () => {
   };
 
   return (
-    <div>
-      <h2>Science Trivia</h2>
+    <div className="science-trivia-container">
+      <h2 className="science-trivia-title">Science Trivia</h2>
       <Scoreboard score={score} />
       {isLoading && <div>Loading...</div>}
       {isError && <div>Error fetching data</div>}
       {data && (
         <div>
           <p>Question {currentQuestionIndex + 1} of {data.length}</p>
-          <h3><HtmlDecode content={data[currentQuestionIndex].question} /></h3> {/* Use HtmlDecode component */}
+          <h3><HtmlDecode content={data[currentQuestionIndex].question} /></h3>
           <div>
             {data[currentQuestionIndex].options.map((option, index) => (
               <div key={index}>
@@ -68,7 +69,7 @@ const ScienceTrivia = () => {
                   checked={selectedAnswer === option}
                   onChange={() => setSelectedAnswer(option)}
                 />
-                <label htmlFor={`option${index}`}><HtmlDecode content={option} /></label> {/* Use HtmlDecode component */}
+                <label htmlFor={`option${index}`}><HtmlDecode content={option} /></label>
               </div>
             ))}
           </div>

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Scoreboard from './Scoreboard';
-import HtmlDecode from './HtmlDecode'; // Import the HtmlDecode component
+import HtmlDecode from './HtmlDecode';
+import './HistoryTrivia.css'; // Import the CSS file for HistoryTrivia
 
 const fetchHistoryQuestions = async () => {
+  const apiUrl = 'https://opentdb.com/api.php?amount=10&category=23';
+
   try {
-    const response = await fetch('https://opentdb.com/api.php?amount=10&category=23');
+    const response = await fetch(apiUrl);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -33,14 +36,14 @@ const HistoryTrivia = () => {
   const [score, setScore] = useState(0);
 
   const handleAnswer = () => {
-    if (selectedAnswer === data[currentQuestionIndex].correct_answer) {
+    if (selectedAnswer === data[currentQuestionIndex]?.correct_answer) {
       setScore(prevScore => prevScore + 1);
     }
     setAnswered(true);
   };
 
   const handleNextQuestion = () => {
-    if (currentQuestionIndex < data.length - 1) {
+    if (data && currentQuestionIndex < data.length - 1) {
       setCurrentQuestionIndex(prevIndex => prevIndex + 1);
       setSelectedAnswer('');
       setAnswered(false);
@@ -48,15 +51,17 @@ const HistoryTrivia = () => {
   };
 
   return (
-    <div>
-      <h2>History Trivia</h2>
+    <div className="history-trivia-container">
+      <h2 className="history-trivia-title">History Trivia</h2>
       <Scoreboard score={score} />
       {isLoading && <div>Loading...</div>}
       {isError && <div>Error fetching data</div>}
-      {data && (
+      {data && data[currentQuestionIndex] && (
         <div>
-          <p>Question {currentQuestionIndex + 1} of {data.length}</p>
-          <h3><HtmlDecode content={data[currentQuestionIndex].question} /></h3> {/* Use HtmlDecode component */}
+          <p>
+            Question {currentQuestionIndex + 1} of {data.length}
+          </p>
+          <h3><HtmlDecode content={data[currentQuestionIndex].question} /></h3>
           <div>
             {data[currentQuestionIndex].options.map((option, index) => (
               <div key={index}>
@@ -68,12 +73,12 @@ const HistoryTrivia = () => {
                   checked={selectedAnswer === option}
                   onChange={() => setSelectedAnswer(option)}
                 />
-                <label htmlFor={`option${index}`}><HtmlDecode content={option} /></label> {/* Use HtmlDecode component */}
+                <label htmlFor={`option${index}`}><HtmlDecode content={option} /></label>
               </div>
             ))}
           </div>
           {!answered && (
-            <button onClick={handleAnswer}>Submit Answer</button>
+            <button onClick={handleAnswer}>Submit</button>
           )}
           {answered && currentQuestionIndex < data.length - 1 && (
             <button onClick={handleNextQuestion}>Next Question</button>

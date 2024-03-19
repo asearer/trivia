@@ -1,5 +1,6 @@
-/* GeneralTrivia.css */
-.general-trivia-container {
+/* EntertainmentTrivia.css */
+
+.entertainment-trivia-container {
   background-color: #000;
   color: #fff;
   padding: 20px;
@@ -9,10 +10,9 @@
   border: 2px solid #fff;
   position: relative; /* Change to relative positioning */
   
-  top: calc(100% + 20px); /* Place below the navbar */
 }
 
-.general-trivia-title {
+.entertainment-trivia-title {
   font-size: 24px;
   margin-bottom: 10px;
 }

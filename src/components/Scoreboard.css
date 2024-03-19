@@ -7,7 +7,7 @@
   text-align: left;
   border: 2px solid #fff;
   position: absolute;
-  left: -250px; /* Adjust as needed */
+  left: -220px; /* Adjust as needed */
   top: 50%; /* Center vertically */
   transform: translateY(-50%); /* Center vertically */
 }
