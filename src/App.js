@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -8,24 +9,12 @@ import EntertainmentTrivia from './components/EntertainmentTrivia';
 import HistoryTrivia from './components/HistoryTrivia';
 import MathTrivia from './components/MathTrivia';
 import './App.css';
-
-// Define the decodeHTMLEntities function globally
-window.decodeHTMLEntities = function(text) {
-    var entities = {
-        '&quot;': '"',
-        '&amp;': '&',
-        '&lt;': '<',
-        '&gt;': '>',
-        '&#39;': '\''
-        // Add more entities as needed
-    };
-
-    return text.replace(/&quot;|&amp;|&lt;|&gt;|&#39;/g, function (match) {
-        return entities[match];
-    });
-};
+import useHtmlEntityDecoder from './useHtmlEntityDecoder'; // Import the custom hook
 
 function App() {
+  // Use the custom hook to decode HTML entities globally
+  useHtmlEntityDecoder();
+
   return (
     <Router>
       <div className="App">
