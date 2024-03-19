@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Scoreboard from './Scoreboard';
 
-const fetchEntertainmentQuestions = async () => {
+const fetchEntertainmentQuestions = async (category) => {
+  const apiUrl = `https://opentdb.com/api.php?amount=10&category=11`;
+
   try {
-    const response = await fetch('https://opentdb.com/api.php?amount=10&category=11&type=multiple');
+    const response = await fetch(apiUrl);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -19,27 +21,27 @@ const fetchEntertainmentQuestions = async () => {
       throw new Error('Data format error: results field missing');
     }
   } catch (error) {
-    console.error('Error fetching entertainment questions:', error);
+    console.error(`Error fetching ${category} questions:`, error);
     throw error; // Rethrow the error to be caught by the caller
   }
 };
 
-const EntertainmentTrivia = () => {
-  const { data, isLoading, isError } = useQuery('entertainmentQuestions', fetchEntertainmentQuestions);
+const EntertainmentTrivia = ({ category }) => {
+  const { data, isLoading, isError } = useQuery(['entertainmentQuestions', category], () => fetchEntertainmentQuestions(category));
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [answered, setAnswered] = useState(false);
   const [score, setScore] = useState(0);
 
   const handleAnswer = () => {
-    if (selectedAnswer === data[currentQuestionIndex].correct_answer) {
+    if (selectedAnswer === data[currentQuestionIndex]?.correct_answer) {
       setScore(prevScore => prevScore + 1);
     }
     setAnswered(true);
   };
 
   const handleNextQuestion = () => {
-    if (currentQuestionIndex < data.length - 1) {
+    if (data && currentQuestionIndex < data.length - 1) {
       setCurrentQuestionIndex(prevIndex => prevIndex + 1);
       setSelectedAnswer('');
       setAnswered(false);
@@ -48,16 +50,16 @@ const EntertainmentTrivia = () => {
 
   return (
     <div>
-      <h2>Entertainment Trivia</h2>
+      <h2>Entertainment Trivia: {category}</h2>
       <Scoreboard score={score} />
       {isLoading && <div>Loading...</div>}
       {isError && <div>Error fetching data</div>}
-      {data && (
+      {data && data[currentQuestionIndex] && (
         <div>
           <p>Question {currentQuestionIndex + 1} of {data.length}</p>
-          <h3>{data[currentQuestionIndex].question}</h3>
+          <h3>{data[currentQuestionIndex]?.question}</h3>
           <div>
-            {data[currentQuestionIndex].options.map((option, index) => (
+            {data[currentQuestionIndex]?.options.map((option, index) => (
               <div key={index}>
                 <input
                   type="radio"

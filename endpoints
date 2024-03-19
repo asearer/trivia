@@ -1,0 +1,81 @@
+general
+	https://opentdb.com/api.php?amount=10&category=9
+
+
+
+entertainment: books
+	https://opentdb.com/api.php?amount=10&category=10
+
+entertainment: film
+	https://opentdb.com/api.php?amount=10&category=11
+
+entertainment: music
+	https://opentdb.com/api.php?amount=10&category=12
+
+entertainment: musicals and theatre
+	https://opentdb.com/api.php?amount=10&category=13
+
+entertainment: television
+	https://opentdb.com/api.php?amount=10&category=14
+
+entertainment: video games
+	https://opentdb.com/api.php?amount=10&category=15
+
+entertainment: board games
+	https://opentdb.com/api.php?amount=10&category=16
+
+
+
+science and nature
+	https://opentdb.com/api.php?amount=10&category=17
+
+science: computers
+	https://opentdb.com/api.php?amount=10&category=18
+
+science: mathematics
+	https://opentdb.com/api.php?amount=10&category=19
+
+
+
+mythology
+	https://opentdb.com/api.php?amount=10&category=20
+
+
+
+sports
+	https://opentdb.com/api.php?amount=10&category=21
+
+
+
+geography
+	https://opentdb.com/api.php?amount=10&category=22
+
+
+
+history
+	https://opentdb.com/api.php?amount=10&category=23
+
+
+
+politics
+	https://opentdb.com/api.php?amount=10&category=24
+
+
+
+art
+	https://opentdb.com/api.php?amount=10&category=25
+
+
+
+celebrities
+	https://opentdb.com/api.php?amount=10&category=26
+
+
+
+animals
+	https://opentdb.com/api.php?amount=10&category=27
+
+
+
+vehicles
+	https://opentdb.com/api.php?amount=10&category=28

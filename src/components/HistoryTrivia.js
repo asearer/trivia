@@ -4,7 +4,7 @@ import Scoreboard from './Scoreboard';
 
 const fetchHistoryQuestions = async () => {
   try {
-    const response = await fetch('https://opentdb.com/api.php?amount=10&category=23&type=multiple');
+    const response = await fetch('https://opentdb.com/api.php?amount=10&category=23');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
