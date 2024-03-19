@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Scoreboard from './Scoreboard';
+import HtmlDecode from './HtmlDecode'; // Import the HtmlDecode component
 
-const fetchEntertainmentQuestions = async (category) => {
-  const apiUrl = `https://opentdb.com/api.php?amount=10&category=11`;
+const fetchEntertainmentQuestions = async () => {
+  const apiUrl = 'https://opentdb.com/api.php?amount=10&category=11';
 
   try {
     const response = await fetch(apiUrl);
@@ -21,13 +22,13 @@ const fetchEntertainmentQuestions = async (category) => {
       throw new Error('Data format error: results field missing');
     }
   } catch (error) {
-    console.error(`Error fetching ${category} questions:`, error);
+    console.error('Error fetching entertainment questions:', error);
     throw error; // Rethrow the error to be caught by the caller
   }
 };
 
-const EntertainmentTrivia = ({ category }) => {
-  const { data, isLoading, isError } = useQuery(['entertainmentQuestions', category], () => fetchEntertainmentQuestions(category));
+const EntertainmentTrivia = () => {
+  const { data, isLoading, isError } = useQuery('entertainmentQuestions', fetchEntertainmentQuestions);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [answered, setAnswered] = useState(false);
@@ -50,16 +51,16 @@ const EntertainmentTrivia = ({ category }) => {
 
   return (
     <div>
-      <h2>Entertainment Trivia: {category}</h2>
+      <h2>Entertainment Trivia</h2>
       <Scoreboard score={score} />
       {isLoading && <div>Loading...</div>}
       {isError && <div>Error fetching data</div>}
       {data && data[currentQuestionIndex] && (
         <div>
           <p>Question {currentQuestionIndex + 1} of {data.length}</p>
-          <h3>{data[currentQuestionIndex]?.question}</h3>
+          <h3><HtmlDecode content={data[currentQuestionIndex].question} /></h3> {/* Use HtmlDecode component */}
           <div>
-            {data[currentQuestionIndex]?.options.map((option, index) => (
+            {data[currentQuestionIndex].options.map((option, index) => (
               <div key={index}>
                 <input
                   type="radio"
@@ -69,7 +70,7 @@ const EntertainmentTrivia = ({ category }) => {
                   checked={selectedAnswer === option}
                   onChange={() => setSelectedAnswer(option)}
                 />
-                <label htmlFor={`option${index}`}>{option}</label>
+                <label htmlFor={`option${index}`}><HtmlDecode content={option} /></label> {/* Use HtmlDecode component */}
               </div>
             ))}
           </div>

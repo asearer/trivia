@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Scoreboard from './Scoreboard';
+import HtmlDecode from './HtmlDecode'; // Import the HtmlDecode component
 
 const fetchHistoryQuestions = async () => {
   try {
@@ -55,7 +56,7 @@ const HistoryTrivia = () => {
       {data && (
         <div>
           <p>Question {currentQuestionIndex + 1} of {data.length}</p>
-          <h3>{data[currentQuestionIndex].question}</h3>
+          <h3><HtmlDecode content={data[currentQuestionIndex].question} /></h3> {/* Use HtmlDecode component */}
           <div>
             {data[currentQuestionIndex].options.map((option, index) => (
               <div key={index}>
@@ -67,7 +68,7 @@ const HistoryTrivia = () => {
                   checked={selectedAnswer === option}
                   onChange={() => setSelectedAnswer(option)}
                 />
-                <label htmlFor={`option${index}`}>{option}</label>
+                <label htmlFor={`option${index}`}><HtmlDecode content={option} /></label> {/* Use HtmlDecode component */}
               </div>
             ))}
           </div>
