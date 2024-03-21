@@ -16,11 +16,7 @@ function Navbar() {
               General Trivia
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/category/entertainment" className="nav-links">
-              Entertainment Trivia
-            </Link>
-          </li>
+          
           
           
           <li className="nav-item">
@@ -33,11 +29,7 @@ function Navbar() {
               History Trivia
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/category/math" className="nav-links">
-              Math Trivia
-            </Link>
-          </li>
+          
           {/* Add more links for other categories as needed */}
         </ul>
       </div>
